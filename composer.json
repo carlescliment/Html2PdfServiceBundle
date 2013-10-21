@@ -1,0 +1,27 @@
+{
+    "name": "carlescliment/html2pdf-bundle",
+    "type": "symfony-bundle",
+    "description": "Integrates the html2pdf REST service in Symfony 2",
+    "keywords": ["html", "pdf", "conversion"],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Carles Climent Granell",
+            "homepage": "http://www.carlescliment.com"
+        }
+    ],
+    "require": {
+        "php": ">5.3.2",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": "2.3.*",
+        "phpunit/phpunit": "3.*@stable",
+        "symfony/finder": "2.3.*",
+        "symfony/form": "2.3.*",
+        "symfony/browser-kit": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "carlescliment\\Html2PdfServiceBundle": "" }
+    }
+}

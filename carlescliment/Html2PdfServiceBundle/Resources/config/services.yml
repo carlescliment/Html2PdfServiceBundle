@@ -1,0 +1,11 @@
+parameters:
+    html2pdf.host: localhost
+    html2pdf.port: 8082
+
+
+services:
+    html2pdf.bridge:
+        class: carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge
+        arguments: ["%html2pdf.host%", "%html2pdf.port%"]
+    foo:
+        class: carlescliment\Foo
