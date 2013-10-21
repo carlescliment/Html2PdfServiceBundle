@@ -23,7 +23,7 @@ class DefaultControllerTest extends WebTestCase
 
         $service = $container->get('html2pdf.bridge');
 
-        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge', $service, 'message');
+        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge', $service);
     }
 
 }
