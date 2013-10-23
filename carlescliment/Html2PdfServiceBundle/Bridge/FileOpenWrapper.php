@@ -3,7 +3,11 @@
 namespace carlescliment\Html2PdfServiceBundle\Bridge;
 
 
-class FileOpenWrapper
+/**
+ *  http://php.net/manual/es/function.fopen.php
+ *  fopen() accepts an url! :)
+ */
+class FileOpenWrapper implements ProtocolInterface
 {
 
     private $host;

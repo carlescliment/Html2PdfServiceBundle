@@ -9,5 +9,5 @@ services:
     html2pdf.fopen_wrapper:
         class: carlescliment\Html2PdfServiceBundle\Bridge\FileOpenWrapper
     html2pdf.bridge:
-        class: carlescliment\Html2PdfServiceBundle\Bridge\SimpleHtml2PdfBridge
+        class: carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge
         arguments: ["@html2pdf.fopen_wrapper", "%html2pdf.host%", "%html2pdf.port%"]
