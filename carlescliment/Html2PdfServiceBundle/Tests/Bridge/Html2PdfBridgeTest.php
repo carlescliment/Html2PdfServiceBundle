@@ -30,7 +30,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
             ->with('http://localhost')
             ->will($this->returnValue($this->protocol));
 
-        $this->bridge->get('resource_name');
+        $this->bridge->getFromHtml('<html></html>', 'file_name');
     }
 
 
@@ -46,7 +46,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
             ->with('8085')
             ->will($this->returnValue($this->protocol));
 
-        $this->bridge->get('resource_name');
+        $this->bridge->getFromHtml('<html></html>', 'file_name');
     }
 
 
@@ -59,9 +59,9 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
 
         $this->protocol->expects($this->once())
             ->method('getResource')
-            ->with('resource_name');
+            ->with('<html></html>');
 
-        $this->bridge->get('resource_name');
+        $this->bridge->getFromHtml('<html></html>', 'file_name');
     }
 
 
@@ -72,7 +72,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->stubChainMethods(array('setHost', 'setPort'));
 
-        $response = $this->bridge->get('resource_name');
+        $response = $this->bridge->getFromHtml('<html></html>', 'file_name');
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
     }
