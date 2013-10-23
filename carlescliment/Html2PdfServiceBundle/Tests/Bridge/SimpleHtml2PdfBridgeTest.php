@@ -2,19 +2,19 @@
 
 namespace carlescliment\Html2PdfServiceBundle\Tests\Bridge;
 
-use carlescliment\Html2PdfServiceBundle\Bridge\CurlHtml2PdfBridge;
+use carlescliment\Html2PdfServiceBundle\Bridge\SimpleHtml2PdfBridge;
 
 
-class CurlHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
+class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
 {
 
     private $bridge;
-    private $curl;
+    private $fopen;
 
     public function setUp()
     {
-        $this->curl = $this->getMock('carlescliment\Html2PdfServiceBundle\Bridge\CurlWrapper');
-        $this->bridge = new CurlHtml2PdfBridge($this->curl, 'http://localhost', '8085');
+        $this->fopen = $this->getMock('carlescliment\Html2PdfServiceBundle\Bridge\FileOpenWrapper');
+        $this->bridge = new SimpleHtml2PdfBridge($this->fopen, 'http://localhost', '8085');
     }
 
 
@@ -25,12 +25,12 @@ class CurlHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->stubChainMethods(array('setPort'));
 
-        $this->curl->expects($this->once())
+        $this->fopen->expects($this->once())
             ->method('setHost')
             ->with('http://localhost')
-            ->will($this->returnValue($this->curl));
+            ->will($this->returnValue($this->fopen));
 
-        $this->bridge->get('');
+        $this->bridge->get('resource_name');
     }
 
 
@@ -41,12 +41,12 @@ class CurlHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->stubChainMethods(array('setHost'));
 
-        $this->curl->expects($this->once())
+        $this->fopen->expects($this->once())
             ->method('setPort')
             ->with('8085')
-            ->will($this->returnValue($this->curl));
+            ->will($this->returnValue($this->fopen));
 
-        $this->bridge->get('');
+        $this->bridge->get('resource_name');
     }
 
 
@@ -57,7 +57,7 @@ class CurlHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->stubChainMethods(array('setHost', 'setPort'));
 
-        $this->curl->expects($this->once())
+        $this->fopen->expects($this->once())
             ->method('getResource')
             ->with('resource_name');
 
@@ -72,7 +72,7 @@ class CurlHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->stubChainMethods(array('setHost', 'setPort'));
 
-        $response = $this->bridge->get('');
+        $response = $this->bridge->get('resource_name');
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
     }
@@ -81,9 +81,9 @@ class CurlHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     private function stubChainMethods(array $methods)
     {
         foreach ($methods as $method) {
-            $this->curl->expects($this->any())
+            $this->fopen->expects($this->any())
                 ->method($method)
-                ->will($this->returnValue($this->curl));
+                ->will($this->returnValue($this->fopen));
         }
     }
 }

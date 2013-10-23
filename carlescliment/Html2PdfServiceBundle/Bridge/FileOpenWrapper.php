@@ -3,7 +3,7 @@
 namespace carlescliment\Html2PdfServiceBundle\Bridge;
 
 
-class CurlWrapper
+class FileOpenWrapper
 {
 
     private $host;
@@ -25,7 +25,7 @@ class CurlWrapper
 
     public function getResource($resource)
     {
-        \curl_init($this->host);
+        \fopen($this->host);
         // ...
     }
 }

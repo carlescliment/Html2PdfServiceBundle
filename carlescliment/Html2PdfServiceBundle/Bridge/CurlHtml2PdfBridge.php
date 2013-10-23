@@ -18,19 +18,19 @@ class CurlHtml2PdfBridge
         $this->port = $port;
     }
 
-    public function get()
+    public function get($resource)
     {
-        $channel = $this->initializeChannel();
+        $resource = $this->getResource($resource);
         return new Response;
     }
 
 
-    private function initializeChannel()
+    private function getResource($resource)
     {
         return $this->curl
                     ->setHost($this->host)
                     ->setPort($this->port)
-                    ->init();
+                    ->getResource($resource);
     }
 
     /*

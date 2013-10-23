@@ -22,7 +22,7 @@ class InstallationTest extends WebTestCase
 
         $service = $container->get('html2pdf.bridge');
 
-        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\CurlHtml2PdfBridge', $service);
+        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\SimpleHtml2PdfBridge', $service);
     }
 
 }
