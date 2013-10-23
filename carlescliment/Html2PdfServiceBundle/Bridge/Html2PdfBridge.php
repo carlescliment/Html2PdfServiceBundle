@@ -20,16 +20,16 @@ class Html2PdfBridge
 
     public function getFromHtml($html, $file_name)
     {
-        $resource = $this->getResource($html);
+        $resource = $this->getResource($html, $file_name);
         return new Response;
     }
 
 
-    private function getResource($html)
+    private function getResource($html, $file_name)
     {
         return $this->protocol
                     ->setHost($this->host)
                     ->setPort($this->port)
-                    ->getResource($html);
+                    ->create($html, $file_name);
     }
 }

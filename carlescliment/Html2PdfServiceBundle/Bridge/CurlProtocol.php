@@ -30,14 +30,14 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 class CurlProtocol extends Protocol
 {
 
-    public function getResource($html)
+    public function create($html, $resource_name)
     {
         $this->requestResourceGeneration();
         // ...
     }
 
-    private function requestResourceGeneration()
+    private function requestResourceGeneration($resource_name)
     {
-        
+        \curl_init($this->host . '/' . $resource_name);
     }
 }

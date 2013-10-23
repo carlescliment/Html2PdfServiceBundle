@@ -58,8 +58,8 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
         $this->stubChainMethods(array('setHost', 'setPort'));
 
         $this->protocol->expects($this->once())
-            ->method('getResource')
-            ->with('<html></html>');
+            ->method('create')
+            ->with('<html></html>', 'file_name');
 
         $this->bridge->getFromHtml('<html></html>', 'file_name');
     }

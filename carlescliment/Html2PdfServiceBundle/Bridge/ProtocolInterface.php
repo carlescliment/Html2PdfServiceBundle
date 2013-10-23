@@ -10,5 +10,5 @@ interface ProtocolInterface
 
     public function setPort($port);
 
-    public function getResource($resource);
+    public function create($html, $resource_name);
 }

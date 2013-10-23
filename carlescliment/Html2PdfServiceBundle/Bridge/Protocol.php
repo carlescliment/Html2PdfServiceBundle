@@ -22,6 +22,4 @@ abstract class Protocol implements ProtocolInterface
         return $this;
     }
 
-
-    public abstract function getResource($resource);
 }
