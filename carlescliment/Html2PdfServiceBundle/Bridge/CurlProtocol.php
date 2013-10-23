@@ -27,25 +27,8 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
  *   echo 'Curl error: ' . curl_error($ch);
  *  }
  */
-class CurlWrapper implements ProtocolInterface
+class CurlProtocol implements ProtocolInterface
 {
-
-    private $host;
-    private $port;
-
-    public function setHost($host)
-    {
-        $this->host = $host;
-        return $this;
-    }
-
-
-    public function setPort($port)
-    {
-        $this->port = $port;
-        return $this;
-    }
-
 
     public function getResource($resource)
     {
