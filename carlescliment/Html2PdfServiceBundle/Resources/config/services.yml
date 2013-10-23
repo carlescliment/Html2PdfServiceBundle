@@ -6,8 +6,6 @@ parameters:
 services:
     html2pdf.curl_protocol:
         class: carlescliment\Html2PdfServiceBundle\Bridge\CurlProtocol
-    html2pdf.fopen_protocol:
-        class: carlescliment\Html2PdfServiceBundle\Bridge\FileOpenProtocol
     html2pdf.bridge:
         class: carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge
-        arguments: ["@html2pdf.fopen_protocol", "%html2pdf.host%", "%html2pdf.port%"]
+        arguments: ["@html2pdf.curl_protocol", "%html2pdf.host%", "%html2pdf.port%"]

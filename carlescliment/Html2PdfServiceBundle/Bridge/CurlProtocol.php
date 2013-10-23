@@ -27,7 +27,7 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
  *   echo 'Curl error: ' . curl_error($ch);
  *  }
  */
-class CurlProtocol implements ProtocolInterface
+class CurlProtocol extends Protocol
 {
 
     public function getResource($resource)
