@@ -6,8 +6,8 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 class CurlWrapper
 {
 
-    private $curlResource;
     private $host;
+    private $port;
 
     public function setHost($host)
     {
@@ -15,8 +15,16 @@ class CurlWrapper
         return $this;
     }
 
+
+    public function setPort($port)
+    {
+        $this->port = $port;
+        return $this;
+    }
+
+
     public function init()
     {
-        $this->curlResource = \curl_init($this->host);
+        return \curl_init($this->host);
     }
 }

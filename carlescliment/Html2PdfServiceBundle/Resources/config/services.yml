@@ -7,5 +7,5 @@ services:
     html2pdf.curl:
         class: carlescliment\Html2PdfServiceBundle\Bridge\CurlWrapper
     html2pdf.bridge:
-        class: carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge
+        class: carlescliment\Html2PdfServiceBundle\Bridge\CurlHtml2PdfBridge
         arguments: ["@html2pdf.curl", "%html2pdf.host%", "%html2pdf.port%"]

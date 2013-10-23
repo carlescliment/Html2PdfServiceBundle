@@ -4,24 +4,33 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class Html2PdfBridge
+class CurlHtml2PdfBridge
 {
 
     private $curl;
     private $host;
+    private $port;
 
-    public function __construct(CurlWrapper $curl, $host)
+    public function __construct(CurlWrapper $curl, $host, $port)
     {
         $this->curl = $curl;
         $this->host = $host;
+        $this->port = $port;
     }
 
     public function get()
     {
-        $this->curl
-            ->setHost($this->host)
-            ->init();
+        $channel = $this->initializeChannel();
         return new Response;
+    }
+
+
+    private function initializeChannel()
+    {
+        return $this->curl
+                    ->setHost($this->host)
+                    ->setPort($this->port)
+                    ->init();
     }
 
     /*

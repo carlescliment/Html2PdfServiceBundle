@@ -3,7 +3,6 @@
 namespace carlescliment\Html2PdfServiceBundle\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge;
 
 class InstallationTest extends WebTestCase
 {
@@ -23,7 +22,7 @@ class InstallationTest extends WebTestCase
 
         $service = $container->get('html2pdf.bridge');
 
-        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge', $service);
+        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\CurlHtml2PdfBridge', $service);
     }
 
 }
