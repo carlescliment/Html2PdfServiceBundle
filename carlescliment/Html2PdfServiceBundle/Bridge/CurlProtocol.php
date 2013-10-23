@@ -38,6 +38,12 @@ class CurlProtocol extends Protocol
 
     private function requestResourceGeneration($resource_name)
     {
-        \curl_init($this->host . '/' . $resource_name);
+        $channel = \curl_init($this->host . '/' . $resource_name);
+        $temporary_file = fopen('php://temp/maxmemory:16000', 'w');
+        \curl_setopt($channel, \CURLOPT_BINARYTRANSFER, 1);
+        \curl_setopt($channel, \CURLOPT_RETURNTRANSFER, 1);
+        \curl_setopt($channel, \CURLOPT_PUT, 1);
+        \curl_setopt($channel, \CURLOPT_FILE, $temporary_file);
+        return curl_exec($ch);
     }
 }
