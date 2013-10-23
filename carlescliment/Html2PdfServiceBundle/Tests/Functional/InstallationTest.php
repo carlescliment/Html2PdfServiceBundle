@@ -5,7 +5,7 @@ namespace carlescliment\Html2PdfServiceBundle\Tests\Functional;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge;
 
-class DefaultControllerTest extends WebTestCase
+class InstallationTest extends WebTestCase
 {
 
     protected static function createKernel(array $options = array())

@@ -1,4 +1,4 @@
 phpunit.xml
 vendor
-*/cache/*
-*/logs/*
+**/cache/*
+**/logs/*

@@ -3,9 +3,111 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "fc47aa02b8528efdcc23677a5c04d0dc",
+    "hash": "695f8b16ab911539bf0396e6e31027f1",
     "packages": [
-
+        {
+            "name": "igorw/file-serve-bundle",
+            "version": "v1.0.2",
+            "target-dir": "Igorw/FileServeBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igorw/IgorwFileServeBundle.git",
+                "reference": "853265a1fa2fe4992351e972d84ad57effa4846b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igorw/IgorwFileServeBundle/zipball/853265a1fa2fe4992351e972d84ad57effa4846b",
+                "reference": "853265a1fa2fe4992351e972d84ad57effa4846b",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/http-foundation": "2.*"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "2.*"
+            },
+            "suggest": {
+                "symfony/framework-bundle": "2.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Igorw\\FileServeBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                }
+            ],
+            "description": "Symfony2 Bundle for serving protected files.",
+            "keywords": [
+                "file-system",
+                "sendfile"
+            ],
+            "time": "2012-10-24 14:48:24"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "v2.3.6",
+            "target-dir": "Symfony/Component/HttpFoundation",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/HttpFoundation.git",
+                "reference": "59e712338cd05463ebcb8da6422a01b1291871e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/59e712338cd05463ebcb8da6422a01b1291871e3",
+                "reference": "59e712338cd05463ebcb8da6422a01b1291871e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/HttpFoundation/Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony HttpFoundation Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-09-29 19:41:41"
+        }
     ],
     "packages-dev": [
         {
@@ -811,17 +913,17 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v2.2.9",
+            "version": "v2.3.6",
             "target-dir": "Symfony/Component/BrowserKit",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/BrowserKit.git",
-                "reference": "c31e6502fe8ec159ae6c23d3b8eafa132519e6f1"
+                "reference": "7fc66ea3b9438080d79246cd8e5d88950c7fe4a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/c31e6502fe8ec159ae6c23d3b8eafa132519e6f1",
-                "reference": "c31e6502fe8ec159ae6c23d3b8eafa132519e6f1",
+                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/7fc66ea3b9438080d79246cd8e5d88950c7fe4a4",
+                "reference": "7fc66ea3b9438080d79246cd8e5d88950c7fe4a4",
                 "shasum": ""
             },
             "require": {
@@ -833,12 +935,12 @@
                 "symfony/process": "~2.0"
             },
             "suggest": {
-                "symfony/process": "2.2.*"
+                "symfony/process": ""
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -862,7 +964,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-25 13:49:28"
+            "time": "2013-09-26 12:37:59"
         },
         {
             "name": "symfony/config",
@@ -1353,56 +1455,6 @@
             "description": "Symfony FrameworkBundle",
             "homepage": "http://symfony.com",
             "time": "2013-10-10 13:12:30"
-        },
-        {
-            "name": "symfony/http-foundation",
-            "version": "v2.3.6",
-            "target-dir": "Symfony/Component/HttpFoundation",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "59e712338cd05463ebcb8da6422a01b1291871e3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/59e712338cd05463ebcb8da6422a01b1291871e3",
-                "reference": "59e712338cd05463ebcb8da6422a01b1291871e3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\HttpFoundation\\": ""
-                },
-                "classmap": [
-                    "Symfony/Component/HttpFoundation/Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony HttpFoundation Component",
-            "homepage": "http://symfony.com",
-            "time": "2013-09-29 19:41:41"
         },
         {
             "name": "symfony/http-kernel",
@@ -1973,8 +2025,7 @@
         "phpunit/phpunit": 0
     },
     "platform": {
-        "php": ">5.3.2",
-        "ext-curl": "*"
+        "php": ">5.3.2"
     },
     "platform-dev": [
 
