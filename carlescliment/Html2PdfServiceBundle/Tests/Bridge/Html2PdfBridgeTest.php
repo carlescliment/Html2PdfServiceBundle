@@ -8,19 +8,40 @@ use carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge;
 class Html2PdfBridgeTest extends \PHPUnit_Framework_TestCase
 {
 
+    private $bridge;
+    private $curl;
+
+    public function setUp()
+    {
+        $this->curl = $this->getMock('carlescliment\Html2PdfServiceBundle\Bridge\CurlWrapper');
+        $this->bridge = new Html2PdfBridge($this->curl, 'http://localhost');
+    }
+
+    /**
+     * @test
+     */
+    public function itConfiguresTheHost()
+    {
+        $this->curl->expects($this->once())
+            ->method('setHost')
+            ->with('http://localhost')
+            ->will($this->returnValue($this->curl));
+
+        $this->bridge->get();
+    }
+
+
     /**
      * @test
      */
     public function itCreatesAConnectionToTheHost()
     {
-        $curl = $this->getMock('carlescliment\Html2PdfServiceBundle\Bridge\CurlWrapper');
-        $bridge = new Html2PdfBridge($curl, 'http://localhost');
+        $this->stubChainMethods();
 
-        $curl->expects($this->once())
-            ->method('init')
-            ->with('http://localhost');
+        $this->curl->expects($this->once())
+            ->method('init');
 
-        $bridge->get();
+        $this->bridge->get();
     }
 
 
@@ -29,11 +50,18 @@ class Html2PdfBridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function itBringsAResponse()
     {
-        $curl = $this->getMock('carlescliment\Html2PdfServiceBundle\Bridge\CurlWrapper');
-        $bridge = new Html2PdfBridge($curl, 'http://localhost');
+        $this->stubChainMethods();
 
-        $response = $bridge->get();
+        $response = $this->bridge->get();
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+    }
+
+
+    private function stubChainMethods()
+    {
+        $this->curl->expects($this->any())
+            ->method('setHost')
+            ->will($this->returnValue($this->curl));
     }
 }

@@ -18,7 +18,9 @@ class Html2PdfBridge
 
     public function get()
     {
-        $this->curl->init($this->host);
+        $this->curl
+            ->setHost($this->host)
+            ->init();
         return new Response;
     }
 

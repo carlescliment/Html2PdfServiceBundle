@@ -6,10 +6,17 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 class CurlWrapper
 {
 
-    private $curlResource = null;
+    private $curlResource;
+    private $host;
 
-    public function init($host)
+    public function setHost($host)
     {
-        $this->curlResource = \curl_init($host);
+        $this->host = $host;
+        return $this;
+    }
+
+    public function init()
+    {
+        $this->curlResource = \curl_init($this->host);
     }
 }
