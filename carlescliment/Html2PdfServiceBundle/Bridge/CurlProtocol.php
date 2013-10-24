@@ -18,6 +18,7 @@ class CurlProtocol extends Protocol
 
     public function create($html, $resource_name)
     {
+        $this->disableExpectHeader();
         $response = $this->requestResourceGeneration($html, $resource_name);
     }
 
@@ -28,5 +29,10 @@ class CurlProtocol extends Protocol
             );
         $url = $this->host . '/' . $resource_name;
         return $this->curl->put($url, $parameters);
+    }
+
+    private function disableExpectHeader()
+    {
+        $this->curl->add_header('Expect', '');
     }
 }

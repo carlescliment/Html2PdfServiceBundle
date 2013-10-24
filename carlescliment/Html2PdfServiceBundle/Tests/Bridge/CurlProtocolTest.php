@@ -35,4 +35,17 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
         $this->protocol->create($content, 'resource_name');
     }
 
+
+    /**
+     * @test
+     */
+    public function itDisablesTheExpectHeaderInTheRequest()
+    {
+        $this->curl->expects($this->once())
+            ->method('add_header')
+            ->with('Expect', '');
+
+        $this->protocol->create('', '');
+    }
+
 }
