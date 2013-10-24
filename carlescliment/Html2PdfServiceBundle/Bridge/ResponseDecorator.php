@@ -20,9 +20,9 @@ class ResponseDecorator
         return $this->response->headers['Status-Code'] == '200';
     }
 
-    public function getMessage()
+    public function get($field)
     {
         $data = json_decode($this->response->body);
-        return isset($data['message']) ? $data['message'] : null;
+        return isset($data[$field]) ? $data[$field] : null;
     }
 }

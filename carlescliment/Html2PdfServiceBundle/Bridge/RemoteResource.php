@@ -6,10 +6,10 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 class RemoteResource
 {
 
-    private $response;
+    private $location;
 
     public function __construct(ResponseDecorator $response)
     {
-        $this->response = $response;
+        $this->location = $response->get('resource_name');
     }
 }

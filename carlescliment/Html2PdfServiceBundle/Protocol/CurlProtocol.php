@@ -33,7 +33,7 @@ class CurlProtocol extends Protocol
     {
         $response = $this->deleteRemoteDocumentIfExists($resource_name);
         if (!$response->isSuccessful()) {
-            throw new UnableToDeleteException($response->getMessage());
+            throw new UnableToDeleteException($response->get('message'));
         }
         return $response;
     }
@@ -50,7 +50,7 @@ class CurlProtocol extends Protocol
     {
         $response = $this->generateRemoteDocument($html, $resource_name);
         if (!$response->isSuccessful()) {
-            throw new UnableToCreateException($response->getMessage());
+            throw new UnableToCreateException($response->get('message'));
         }
         return $response;
     }
