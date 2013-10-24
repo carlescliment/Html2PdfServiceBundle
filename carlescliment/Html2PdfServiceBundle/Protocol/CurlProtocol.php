@@ -1,12 +1,14 @@
 <?php
 
-namespace carlescliment\Html2PdfServiceBundle\Bridge;
+namespace carlescliment\Html2PdfServiceBundle\Protocol;
 
 
 use shuber\Curl\Curl,
     shuber\Curl\CurlResponse;
 use carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException,
     carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException;
+use carlescliment\Html2PdfServiceBundle\Bridge\ResponseDecorator,
+    carlescliment\Html2PdfServiceBundle\Bridge\RemoteResource;
 
 class CurlProtocol extends Protocol
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace carlescliment\Html2PdfServiceBundle\Bridge;
+namespace carlescliment\Html2PdfServiceBundle\Protocol;
 
 
 abstract class Protocol implements ProtocolInterface

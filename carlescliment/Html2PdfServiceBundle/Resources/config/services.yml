@@ -8,7 +8,7 @@ services:
         class: shuber\Curl\Curl
 
     html2pdf.curl_protocol:
-        class: carlescliment\Html2PdfServiceBundle\Bridge\CurlProtocol
+        class: carlescliment\Html2PdfServiceBundle\Protocol\CurlProtocol
         arguments: ["@html2pdf.curl"]
 
     html2pdf.bridge:

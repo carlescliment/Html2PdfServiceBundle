@@ -13,7 +13,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->protocol = $this->getMock('carlescliment\Html2PdfServiceBundle\Bridge\ProtocolInterface');
+        $this->protocol = $this->getMock('carlescliment\Html2PdfServiceBundle\Protocol\ProtocolInterface');
         $this->bridge = new Html2PdfBridge($this->protocol, 'http://localhost', '8085');
     }
 

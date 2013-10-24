@@ -1,8 +1,8 @@
 <?php
 
-namespace carlescliment\Html2PdfServiceBundle\Tests\Bridge;
+namespace carlescliment\Html2PdfServiceBundle\Tests\Protocol;
 
-use carlescliment\Html2PdfServiceBundle\Bridge\CurlProtocol;
+use carlescliment\Html2PdfServiceBundle\Protocol\CurlProtocol;
 
 class CurlProtocolTest extends \PHPUnit_Framework_TestCase
 {

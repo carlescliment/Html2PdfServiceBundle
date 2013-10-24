@@ -4,6 +4,8 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 
 use Symfony\Component\HttpFoundation\Response;
 
+use carlescliment\Html2PdfServiceBundle\Protocol\ProtocolInterface;
+
 class Html2PdfBridge
 {
 
