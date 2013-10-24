@@ -1,4 +1,5 @@
 phpunit.xml
+composer.phar
 vendor
 **/cache/**
 **/logs/**

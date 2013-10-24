@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0851292ea9473895291fbc265b23f2f1",
+    "hash": "caa2281e13f64b3c2c6d1b1f37818b85",
     "packages": [
         {
             "name": "carlescliment/curl",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/carlescliment/curl.git",
-                "reference": "c22449b09cb385bc9f4db622ef30b5ca7d299be9"
+                "reference": "f8c956d52b851b52405bf61ce1e1d403c1492230"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/carlescliment/curl/zipball/c22449b09cb385bc9f4db622ef30b5ca7d299be9",
-                "reference": "c22449b09cb385bc9f4db622ef30b5ca7d299be9",
+                "url": "https://api.github.com/repos/carlescliment/curl/zipball/f8c956d52b851b52405bf61ce1e1d403c1492230",
+                "reference": "f8c956d52b851b52405bf61ce1e1d403c1492230",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,7 @@
                 "curl",
                 "php"
             ],
-            "time": "2013-10-23 16:05:00"
+            "time": "2013-10-24 08:16:05"
         }
     ],
     "packages-dev": [
@@ -2009,7 +2009,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "carlescliment/curl": 20,
         "phpunit/phpunit": 0
     },
     "platform": {
