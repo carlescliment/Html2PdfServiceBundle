@@ -23,6 +23,6 @@ class ResponseDecorator
     public function get($field)
     {
         $data = json_decode($this->response->body);
-        return isset($data[$field]) ? $data[$field] : null;
+        return isset($data->$field) ? $data->$field : null;
     }
 }
