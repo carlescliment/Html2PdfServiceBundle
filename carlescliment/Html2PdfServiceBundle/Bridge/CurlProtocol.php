@@ -8,7 +8,6 @@ use shuber\Curl\Curl,
 use carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException,
     carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException;
 
-
 class CurlProtocol extends Protocol
 {
 
@@ -24,6 +23,7 @@ class CurlProtocol extends Protocol
     {
         $this->deleteRemoteDocumentOrThrowException($resource_name);
         $response = $this->generateRemoteDocumentOrThrowException($html, $resource_name);
+        return new RemoteResource($response);
     }
 
 
