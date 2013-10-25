@@ -6,7 +6,8 @@ namespace carlescliment\Html2PdfServiceBundle\Protocol;
 use shuber\Curl\Curl,
     shuber\Curl\CurlResponse;
 use carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException,
-    carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException;
+    carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException,
+    carlescliment\Html2PdfServiceBundle\Exception\UnableToGetException;
 
 class CurlProtocol extends Protocol
 {
@@ -21,15 +22,26 @@ class CurlProtocol extends Protocol
 
     public function get($resource_name)
     {
-        $url = $this->resourceToUrl($resource_name);
-        $response = $this->curl->get($url);
-        return $this->decorate($response)->getBody();
+        $response = $this->getRemoteDocumentOrThrowException($resource_name);
+        return $response->getBody();
     }
+
 
     public function create($html, $resource_name)
     {
         $this->deleteRemoteDocumentOrThrowException($resource_name);
         $this->createRemoteDocumentOrThrowException($html, $resource_name);
+    }
+
+
+    private function getRemoteDocumentOrThrowException($resource_name)
+    {
+        $url = $this->resourceToUrl($resource_name);
+        $response = $this->decorate($this->curl->get($url));
+        if (!$response->isSuccessful()) {
+            throw new UnableToGetException($response->getBody());
+        }
+        return $response;
     }
 
 

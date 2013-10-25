@@ -51,6 +51,18 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException carlescliment\Html2PdfServiceBundle\Exception\UnableToGetException
+     */
+    public function itThrowsAnExceptionIfTheResourceCouldNotBeRetrieved()
+    {
+        $this->stubGetResponse(404);
+
+        $this->protocol->get('resource_name');
+    }
+
+
+    /**
+     * @test
      */
     public function itDeletesTheRemoteDocumentToPreventConflictsWhenCreating()
     {
