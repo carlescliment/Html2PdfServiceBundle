@@ -8,6 +8,8 @@ use shuber\Curl\Curl,
 use carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException,
     carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException,
     carlescliment\Html2PdfServiceBundle\Exception\UnableToGetException;
+use carlescliment\Html2PdfServiceBundle\Response\ResponseDecorator;
+
 
 class CurlProtocol extends Protocol
 {

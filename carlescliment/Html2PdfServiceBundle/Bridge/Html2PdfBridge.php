@@ -5,6 +5,7 @@ namespace carlescliment\Html2PdfServiceBundle\Bridge;
 use Symfony\Component\HttpFoundation\Response;
 
 use carlescliment\Html2PdfServiceBundle\Protocol\ProtocolInterface;
+use carlescliment\Html2PdfServiceBundle\Response\PdfResponse;
 
 class Html2PdfBridge
 {
@@ -19,8 +20,8 @@ class Html2PdfBridge
 
     public function getFromHtml($html, $file_name)
     {
-        $resource = $this->getResource($html, $file_name);
-        return new Response;
+        $contents = $this->getResource($html, $file_name);
+        return new PdfResponse($file_name, $contents);
     }
 
 

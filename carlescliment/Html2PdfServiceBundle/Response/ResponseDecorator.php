@@ -1,6 +1,6 @@
 <?php
 
-namespace carlescliment\Html2PdfServiceBundle\Protocol;
+namespace carlescliment\Html2PdfServiceBundle\Response;
 
 use shuber\Curl\CurlResponse;
 

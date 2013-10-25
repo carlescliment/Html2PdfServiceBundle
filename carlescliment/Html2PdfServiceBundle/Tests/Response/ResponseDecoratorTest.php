@@ -1,9 +1,9 @@
 <?php
 
-namespace carlescliment\Html2PdfServiceBundle\Tests\Protocol;
+namespace carlescliment\Html2PdfServiceBundle\Tests\Response;
 
 use carlescliment\Html2PdfServiceBundle\Tests\MockerTestCase;
-use carlescliment\Html2PdfServiceBundle\Protocol\ResponseDecorator;
+use carlescliment\Html2PdfServiceBundle\Response\ResponseDecorator;
 
 class ResponseDecoratorTest extends MockerTestCase
 {
