@@ -32,6 +32,7 @@ class Html2PdfBridge
         return $this->protocol
                     ->setHost($this->host)
                     ->setPort($this->port)
-                    ->create($html, $file_name);
+                    ->create($html, $file_name)
+                    ->get($file_name);
     }
 }

@@ -31,6 +31,7 @@ class CurlProtocol extends Protocol
     {
         $this->deleteRemoteDocumentOrThrowException($resource_name);
         $this->createRemoteDocumentOrThrowException($html, $resource_name);
+        return $this;
     }
 
 

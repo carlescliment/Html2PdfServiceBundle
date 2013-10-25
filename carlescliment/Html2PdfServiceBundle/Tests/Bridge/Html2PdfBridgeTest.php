@@ -23,7 +23,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function itConfiguresTheHost()
     {
-        $this->stubChainMethods(array('setPort'));
+        $this->stubChainMethods(array('setPort', 'create'));
 
         $this->protocol->expects($this->once())
             ->method('setHost')
@@ -39,7 +39,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function itConfiguresThePort()
     {
-        $this->stubChainMethods(array('setHost'));
+        $this->stubChainMethods(array('setHost', 'create'));
 
         $this->protocol->expects($this->once())
             ->method('setPort')
@@ -53,13 +53,29 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function itBringsTheResource()
+    public function itCreatesTheResource()
     {
         $this->stubChainMethods(array('setHost', 'setPort'));
 
         $this->protocol->expects($this->once())
             ->method('create')
-            ->with('<html></html>', 'file_name');
+            ->with('<html></html>', 'file_name')
+            ->will($this->returnValue($this->protocol));
+
+        $this->bridge->getFromHtml('<html></html>', 'file_name');
+    }
+
+
+    /**
+     * @test
+     */
+    public function itRetrievesTheResource()
+    {
+        $this->stubChainMethods(array('setHost', 'setPort', 'create'));
+
+        $this->protocol->expects($this->once())
+            ->method('get')
+            ->with('file_name');
 
         $this->bridge->getFromHtml('<html></html>', 'file_name');
     }
@@ -70,7 +86,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function itBringsAResponse()
     {
-        $this->stubChainMethods(array('setHost', 'setPort'));
+        $this->stubChainMethods(array('setHost', 'setPort', 'create'));
 
         $response = $this->bridge->getFromHtml('<html></html>', 'file_name');
 
