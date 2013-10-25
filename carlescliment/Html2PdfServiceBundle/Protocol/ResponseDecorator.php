@@ -34,6 +34,11 @@ class ResponseDecorator
     }
 
 
+    public function getBody()
+    {
+        return $this->get('body');
+    }
+
     public function get($field)
     {
         $data = json_decode($this->response->body);
