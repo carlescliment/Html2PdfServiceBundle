@@ -23,7 +23,36 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function itDeletesTheRemoteDocumentToPreventConflicts()
+    public function itRequestsTheRemoteServerForAResource()
+    {
+        $this->stubGetResponse(200);
+
+        $this->curl->expects($this->once())
+            ->method('get')
+            ->with('http://remote.pdf.com/resource_name');
+
+        $this->protocol->get('resource_name');
+    }
+
+
+    /**
+     * @test
+     */
+    public function itReturnsTheGivenResource()
+    {
+        $response = $this->stubGetResponse(200);
+        $response->body = json_encode(array('body' => 'file contents'));
+
+        $file_contents = $this->protocol->get('resource_name');
+
+        $this->assertEquals('file contents', $file_contents);
+    }
+
+
+    /**
+     * @test
+     */
+    public function itDeletesTheRemoteDocumentToPreventConflictsWhenCreating()
     {
         $expected_url = 'http://remote.pdf.com/resource_name';
         $response = $this->responseMock(200);
@@ -42,7 +71,7 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
      * @test
      * @expectedException carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException
      */
-    public function itThrowsAnExceptionIfTheResourceCouldNotBeDeleted()
+    public function itThrowsAnExceptionIfTheResourceCouldNotBeDeletedBeforeCreating()
     {
         $this->stubDeleteResponse(500);
 
@@ -93,21 +122,31 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    private function stubGetResponse($status_code)
+    {
+        return $this->stubResponseForMethod($status_code, 'get');
+    }
+
+
     private function stubDeleteResponse($status_code)
     {
-        $response = $this->responseMock($status_code);
-        $this->curl->expects($this->any())
-            ->method('delete')
-            ->will($this->returnValue($response));
+        return $this->stubResponseForMethod($status_code, 'delete');
     }
 
 
     private function stubCreateResponse($status_code)
     {
+        return $this->stubResponseForMethod($status_code, 'put');
+    }
+
+
+    private function stubResponseForMethod($status_code, $method)
+    {
         $response = $this->responseMock($status_code);
         $this->curl->expects($this->any())
-            ->method('put')
+            ->method($method)
             ->will($this->returnValue($response));
+        return $response;
     }
 
 
@@ -117,6 +156,7 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
                     ->disableOriginalConstructor()
                     ->getMock();
         $response->headers['Status-Code'] = $status_code;
+        $response->body = json_encode(array());
         return $response;
     }
 

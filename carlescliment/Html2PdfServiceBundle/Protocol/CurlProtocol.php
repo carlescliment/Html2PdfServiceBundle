@@ -19,6 +19,13 @@ class CurlProtocol extends Protocol
     }
 
 
+    public function get($resource_name)
+    {
+        $url = $this->resourceToUrl($resource_name);
+        $response = $this->curl->get($url);
+        return $this->decorate($response)->getBody();
+    }
+
     public function create($html, $resource_name)
     {
         $this->deleteRemoteDocumentOrThrowException($resource_name);
