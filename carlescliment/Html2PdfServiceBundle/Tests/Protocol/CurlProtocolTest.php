@@ -2,9 +2,11 @@
 
 namespace carlescliment\Html2PdfServiceBundle\Tests\Protocol;
 
+
+use carlescliment\Html2PdfServiceBundle\Tests\MockerTestCase;
 use carlescliment\Html2PdfServiceBundle\Protocol\CurlProtocol;
 
-class CurlProtocolTest extends \PHPUnit_Framework_TestCase
+class CurlProtocolTest extends MockerTestCase
 {
 
     private $curl;
@@ -13,7 +15,7 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->curl = $this->getMock('shuber\Curl\Curl');
+        $this->curl = $this->mock('shuber\Curl\Curl');
         $this->protocol = new CurlProtocol($this->curl);
         $this->protocol->setHost('http://remote.pdf.com');
         $this->response->headers['Status-Code'] = 200;
@@ -164,9 +166,7 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
 
     private function responseMock($status_code)
     {
-        $response = $this->getMockBuilder('shuber\Curl\CurlResponse')
-                    ->disableOriginalConstructor()
-                    ->getMock();
+        $response = $this->mock('shuber\Curl\CurlResponse');
         $response->headers['Status-Code'] = $status_code;
         $response->body = json_encode(array());
         return $response;
