@@ -36,7 +36,18 @@ class ResponseDecorator
 
     public function getBody()
     {
-        return $this->get('body');
+        $body = $this->get('body');
+        $encoding = $this->get('encoding');
+        return $encoding ? $this->decode($encoding, $body) : $body;
+    }
+
+
+    private function decode($encoding, $content)
+    {
+        if ($encoding == 'base64') {
+            return base64_decode($content);
+        }
+        return $content;
     }
 
     public function get($field)
