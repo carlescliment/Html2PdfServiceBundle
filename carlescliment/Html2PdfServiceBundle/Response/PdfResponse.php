@@ -14,6 +14,7 @@ class PdfResponse extends Response
     {
         parent::__construct($content);
         $this->fileName = $file_name;
+        $this->headers->set('Content-Type', 'application/pdf');
     }
 
     public function sendContent()
