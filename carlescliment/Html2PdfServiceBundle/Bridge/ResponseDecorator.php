@@ -15,10 +15,24 @@ class ResponseDecorator
         $this->response = $response;
     }
 
+
     public function isSuccessful()
     {
         return $this->response->headers['Status-Code'] == '200';
     }
+
+
+    public function isNotFound()
+    {
+        return $this->response->headers['Status-Code'] == '404';
+    }
+
+
+    public function isError()
+    {
+        return $this->response->headers['Status-Code'] == '500';
+    }
+
 
     public function get($field)
     {
