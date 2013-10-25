@@ -21,6 +21,18 @@ class ResponseDecoratorTest extends MockerTestCase
     }
 
 
+    /**
+     * @test
+     */
+    public function itBringsIfResponseIsNotFound()
+    {
+        $successful_response = $this->createDecoratorFor(array('Status-Code' => 200));
+        $not_found_response = $this->createDecoratorFor(array('Status-Code' => 404));
+
+        $this->assertFalse($successful_response->isNotFound());
+        $this->assertTrue($not_found_response->isNotFound());
+    }
+
     private function createDecoratorFor(array $headers)
     {
         $curl_response = $this->mock('shuber\Curl\CurlResponse');
