@@ -7,8 +7,6 @@ use shuber\Curl\Curl,
     shuber\Curl\CurlResponse;
 use carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException,
     carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException;
-use carlescliment\Html2PdfServiceBundle\Bridge\ResponseDecorator,
-    carlescliment\Html2PdfServiceBundle\Bridge\RemoteResource;
 
 class CurlProtocol extends Protocol
 {
@@ -24,18 +22,16 @@ class CurlProtocol extends Protocol
     public function create($html, $resource_name)
     {
         $this->deleteRemoteDocumentOrThrowException($resource_name);
-        $response = $this->generateRemoteDocumentOrThrowException($html, $resource_name);
-        return new RemoteResource($response);
+        $this->createRemoteDocumentOrThrowException($html, $resource_name);
     }
 
 
     private function deleteRemoteDocumentOrThrowException($resource_name)
     {
         $response = $this->deleteRemoteDocumentIfExists($resource_name);
-        if (!$response->isSuccessful()) {
+        if ($response->isError()) {
             throw new UnableToDeleteException($response->get('message'));
         }
-        return $response;
     }
 
 
@@ -46,17 +42,16 @@ class CurlProtocol extends Protocol
     }
 
 
-    private function generateRemoteDocumentOrThrowException($html, $resource_name)
+    private function createRemoteDocumentOrThrowException($html, $resource_name)
     {
-        $response = $this->generateRemoteDocument($html, $resource_name);
+        $response = $this->createRemoteDocument($html, $resource_name);
         if (!$response->isSuccessful()) {
             throw new UnableToCreateException($response->get('message'));
         }
-        return $response;
     }
 
 
-    private function generateRemoteDocument($html, $resource_name)
+    private function createRemoteDocument($html, $resource_name)
     {
         $this->disableExpectHeader();
         $url = $this->resourceToUrl($resource_name);

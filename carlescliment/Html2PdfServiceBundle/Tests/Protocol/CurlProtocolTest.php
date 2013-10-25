@@ -93,19 +93,6 @@ class CurlProtocolTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /**
-     * @test
-     */
-    public function itReturnsARemoteResourceInstance()
-    {
-        $this->allRequestsAreSuccessful();
-
-        $resource = $this->protocol->create('', '');
-
-        $this->assertInstanceOf('carlescliment\Html2PdfServiceBundle\Bridge\RemoteResource', $resource);
-    }
-
-
     private function stubDeleteResponse($status_code)
     {
         $response = $this->responseMock($status_code);
