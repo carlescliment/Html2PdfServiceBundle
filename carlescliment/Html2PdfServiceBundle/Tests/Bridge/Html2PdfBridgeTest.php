@@ -21,38 +21,6 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function itConfiguresTheHost()
-    {
-        $this->stubChainMethods(array('setPort', 'create'));
-
-        $this->protocol->expects($this->once())
-            ->method('setHost')
-            ->with('http://localhost')
-            ->will($this->returnValue($this->protocol));
-
-        $this->bridge->getFromHtml('<html></html>', 'file_name');
-    }
-
-
-    /**
-     * @test
-     */
-    public function itConfiguresThePort()
-    {
-        $this->stubChainMethods(array('setHost', 'create'));
-
-        $this->protocol->expects($this->once())
-            ->method('setPort')
-            ->with('8085')
-            ->will($this->returnValue($this->protocol));
-
-        $this->bridge->getFromHtml('<html></html>', 'file_name');
-    }
-
-
-    /**
-     * @test
-     */
     public function itCreatesTheResource()
     {
         $this->stubChainMethods(array('setHost', 'setPort'));

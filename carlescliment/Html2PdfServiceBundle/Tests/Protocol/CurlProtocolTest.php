@@ -16,8 +16,7 @@ class CurlProtocolTest extends MockerTestCase
     public function setUp()
     {
         $this->curl = $this->mock('shuber\Curl\Curl');
-        $this->protocol = new CurlProtocol($this->curl);
-        $this->protocol->setHost('http://remote.pdf.com');
+        $this->protocol = new CurlProtocol($this->curl, 'http://remote.pdf.com');
         $this->response->headers['Status-Code'] = 200;
     }
 

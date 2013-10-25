@@ -10,15 +10,12 @@ class Html2PdfBridge
 {
 
     private $protocol;
-    private $host;
-    private $port;
 
-    public function __construct(ProtocolInterface $protocol, $host, $port)
+    public function __construct(ProtocolInterface $protocol)
     {
         $this->protocol = $protocol;
-        $this->host = $host;
-        $this->port = $port;
     }
+
 
     public function getFromHtml($html, $file_name)
     {
@@ -30,8 +27,6 @@ class Html2PdfBridge
     private function getResource($html, $file_name)
     {
         return $this->protocol
-                    ->setHost($this->host)
-                    ->setPort($this->port)
                     ->create($html, $file_name)
                     ->get($file_name);
     }

@@ -9,17 +9,10 @@ abstract class Protocol implements ProtocolInterface
     protected $host;
     protected $port;
 
-    public function setHost($host)
+    public function __construct($host, $port)
     {
         $this->host = $host;
-        return $this;
-    }
-
-
-    public function setPort($port)
-    {
         $this->port = $port;
-        return $this;
     }
 
 }

@@ -14,8 +14,9 @@ class CurlProtocol extends Protocol
 
     private $curl;
 
-    public function __construct(Curl $curl)
+    public function __construct(Curl $curl, $host, $port = '80')
     {
+        parent::__construct($host, $port);
         $this->curl = $curl;
     }
 
