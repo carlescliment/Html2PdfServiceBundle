@@ -23,6 +23,14 @@ class CurlProtocol extends Protocol
     }
 
 
+    public function delete($resource_name)
+    {
+        $response = $this->deleteRemoteDocumentIfExists($resource_name);
+        if ($response->isError()) {
+            throw new UnableToDeleteException($response->getBody());
+        }
+    }
+
     public function get($resource_name)
     {
         $response = $this->getRemoteDocumentOrThrowException($resource_name);
@@ -32,7 +40,6 @@ class CurlProtocol extends Protocol
 
     public function create($html, $resource_name)
     {
-        $this->deleteRemoteDocumentOrThrowException($resource_name);
         $this->createRemoteDocumentOrThrowException($html, $resource_name);
         return $this;
     }
@@ -46,15 +53,6 @@ class CurlProtocol extends Protocol
             throw new UnableToGetException($response->getBody());
         }
         return $response;
-    }
-
-
-    private function deleteRemoteDocumentOrThrowException($resource_name)
-    {
-        $response = $this->deleteRemoteDocumentIfExists($resource_name);
-        if ($response->isError()) {
-            throw new UnableToDeleteException($response->getBody());
-        }
     }
 
 

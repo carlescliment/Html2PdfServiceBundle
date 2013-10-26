@@ -18,12 +18,29 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
     }
 
 
+
+    /**
+     * @test
+     */
+    public function itDeletesTheResource()
+    {
+        $this->stubChainMethods(array('create'));
+
+        $this->protocol->expects($this->once())
+            ->method('delete')
+            ->with('file_name')
+            ->will($this->returnValue($this->protocol));
+
+        $this->bridge->getFromHtml('<html></html>', 'file_name');
+    }
+
+
     /**
      * @test
      */
     public function itCreatesTheResource()
     {
-        $this->stubChainMethods(array('setHost', 'setPort'));
+        $this->stubChainMethods(array('delete'));
 
         $this->protocol->expects($this->once())
             ->method('create')
@@ -39,7 +56,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function itRetrievesTheResource()
     {
-        $this->stubChainMethods(array('setHost', 'setPort', 'create'));
+        $this->stubChainMethods(array('delete', 'create'));
 
         $this->protocol->expects($this->once())
             ->method('get')
@@ -54,7 +71,7 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
      */
     public function itBringsAResponse()
     {
-        $this->stubChainMethods(array('setHost', 'setPort', 'create'));
+        $this->stubChainMethods(array('delete', 'create'));
 
         $response = $this->bridge->getFromHtml('<html></html>', 'file_name');
 

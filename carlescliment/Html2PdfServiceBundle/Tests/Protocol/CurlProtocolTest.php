@@ -24,6 +24,35 @@ class CurlProtocolTest extends MockerTestCase
     /**
      * @test
      */
+    public function itDeletesTheRemoteDocument()
+    {
+        $expected_url = 'http://remote.pdf.com/resource_name';
+        $response = $this->responseMock(200);
+
+        $this->curl->expects($this->once())
+            ->method('delete')
+            ->with($expected_url)
+            ->will($this->returnValue($response));
+
+        $this->protocol->delete('resource_name');
+    }
+
+
+    /**
+     * @test
+     * @expectedException carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException
+     */
+    public function itThrowsAnExceptionIfTheResourceCouldNotBeDeleted()
+    {
+        $this->stubDeleteResponse(500);
+
+        $this->protocol->delete('resource_name');
+    }
+
+
+    /**
+     * @test
+     */
     public function itRequestsTheRemoteServerForAResource()
     {
         $this->stubGetResponse(200);
@@ -65,39 +94,9 @@ class CurlProtocolTest extends MockerTestCase
     /**
      * @test
      */
-    public function itDeletesTheRemoteDocumentToPreventConflictsWhenCreating()
-    {
-        $expected_url = 'http://remote.pdf.com/resource_name';
-        $response = $this->responseMock(200);
-        $this->stubCreateResponse(200);
-
-        $this->curl->expects($this->once())
-            ->method('delete')
-            ->with($expected_url)
-            ->will($this->returnValue($response));
-
-        $this->protocol->create('', 'resource_name');
-    }
-
-
-    /**
-     * @test
-     * @expectedException carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException
-     */
-    public function itThrowsAnExceptionIfTheResourceCouldNotBeDeletedBeforeCreating()
-    {
-        $this->stubDeleteResponse(500);
-
-        $this->protocol->create('', 'resource_name');
-    }
-
-
-    /**
-     * @test
-     */
     public function itCreatesTheRemoteDocument()
     {
-        $this->allRequestsAreSuccessful();
+        $this->stubCreateResponse(200);
 
         $this->curl->expects($this->once())
             ->method('put')
@@ -113,7 +112,6 @@ class CurlProtocolTest extends MockerTestCase
      */
     public function itThrowsAnExceptionIfTheResourceCouldNotBeCreated()
     {
-        $this->stubDeleteResponse(200);
         $this->stubCreateResponse(500);
 
         $this->protocol->create('', 'resource_name');
@@ -125,7 +123,7 @@ class CurlProtocolTest extends MockerTestCase
      */
     public function itDisablesTheExpectHeaderInTheRequestToAllowUnwantedResponseHeaders()
     {
-        $this->allRequestsAreSuccessful();
+        $this->stubCreateResponse(200);
 
         $this->curl->expects($this->once())
             ->method('add_header')
@@ -171,10 +169,4 @@ class CurlProtocolTest extends MockerTestCase
         return $response;
     }
 
-
-    private function allRequestsAreSuccessful()
-    {
-        $this->stubDeleteResponse(200);
-        $this->stubCreateResponse(200);
-    }
 }
