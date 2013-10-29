@@ -4,7 +4,7 @@ namespace carlescliment\Html2PdfServiceBundle\Response;
 
 use shuber\Curl\CurlResponse;
 
-class ResponseDecorator
+class CurlResponseDecorator
 {
 
 

@@ -1,9 +1,10 @@
 Html2PdfServiceBundle
 =====================
 
+[![Build Status](https://travis-ci.org/carlescliment/Html2PdfServiceBundle.png)](https://travis-ci.org/carlescliment/Html2PdfServiceBundle)
+
 This is a Symfony 2 client for the [Html2Pdf REST Service](https://github.com/carlescliment/html2pdf-service).
 
-[![Build Status](https://travis-ci.org/carlescliment/Html2PdfServiceBundle.png)](https://travis-ci.org/carlescliment/Html2PdfServiceBundle)
 
 ## Installation
 

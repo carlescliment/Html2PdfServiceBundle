@@ -3,9 +3,9 @@
 namespace carlescliment\Html2PdfServiceBundle\Tests\Response;
 
 use carlescliment\Html2PdfServiceBundle\Tests\MockerTestCase;
-use carlescliment\Html2PdfServiceBundle\Response\ResponseDecorator;
+use carlescliment\Html2PdfServiceBundle\Response\CurlResponseDecorator;
 
-class ResponseDecoratorTest extends MockerTestCase
+class CurlResponseDecoratorTest extends MockerTestCase
 {
 
     /**
@@ -94,6 +94,6 @@ class ResponseDecoratorTest extends MockerTestCase
         $curl_response = $this->mock('shuber\Curl\CurlResponse');
         $curl_response->headers = $headers;
         $curl_response->body = json_encode($body);
-        return new ResponseDecorator($curl_response);
+        return new CurlResponseDecorator($curl_response);
     }
 }

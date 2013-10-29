@@ -5,10 +5,8 @@ namespace carlescliment\Html2PdfServiceBundle\Protocol;
 
 use shuber\Curl\Curl,
     shuber\Curl\CurlResponse;
-use carlescliment\Html2PdfServiceBundle\Exception\UnableToDeleteException,
-    carlescliment\Html2PdfServiceBundle\Exception\UnableToCreateException,
-    carlescliment\Html2PdfServiceBundle\Exception\UnableToGetException;
-use carlescliment\Html2PdfServiceBundle\Response\ResponseDecorator;
+use carlescliment\Html2PdfServiceBundle\Exception as Exceptions;
+use carlescliment\Html2PdfServiceBundle\Response\CurlResponseDecorator;
 
 
 class CurlProtocol extends Protocol
@@ -27,7 +25,7 @@ class CurlProtocol extends Protocol
     {
         $response = $this->deleteRemoteDocumentIfExists($resource_name);
         if ($response->isError()) {
-            throw new UnableToDeleteException($response->getBody());
+            throw new Exceptions\UnableToDeleteException($response->getBody());
         }
     }
 
@@ -50,7 +48,7 @@ class CurlProtocol extends Protocol
         $url = $this->resourceToUrl($resource_name);
         $response = $this->decorate($this->curl->get($url));
         if (!$response->isSuccessful()) {
-            throw new UnableToGetException($response->getBody());
+            throw new Exceptions\UnableToGetException($response->getBody());
         }
         return $response;
     }
@@ -67,7 +65,7 @@ class CurlProtocol extends Protocol
     {
         $response = $this->createRemoteDocument($html, $resource_name);
         if (!$response->isSuccessful()) {
-            throw new UnableToCreateException($response->getBody());
+            throw new Exceptions\UnableToCreateException($response->getBody());
         }
     }
 
@@ -95,6 +93,6 @@ class CurlProtocol extends Protocol
 
     private function decorate(CurlResponse $response)
     {
-        return new ResponseDecorator($response);
+        return new CurlResponseDecorator($response);
     }
 }
