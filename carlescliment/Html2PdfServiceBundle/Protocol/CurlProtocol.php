@@ -27,6 +27,7 @@ class CurlProtocol extends Protocol
         if ($response->isError()) {
             throw new Exceptions\UnableToDeleteException($response->getBody());
         }
+        return $this;
     }
 
     public function get($resource_name)
