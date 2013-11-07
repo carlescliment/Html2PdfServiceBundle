@@ -60,6 +60,17 @@ class SampleController extends Controller
 }
 ```
 
+## Testing
+
+Execute phpunit in the bundle's root dir to run the tests.
+
+If you need functional or integration tests and don't want to make real curl requests, you can use the NullProtocol in order to disable them. Put this configuration in your config_test.yml file.
+
+```
+html2pdf.protocol:
+    class: carlescliment\Html2PdfServiceBundle\Protocol\NullProtocol
+```
+
 
 
 ## TO-DO

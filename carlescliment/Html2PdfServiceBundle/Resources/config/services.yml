@@ -7,10 +7,10 @@ services:
     html2pdf.curl:
         class: shuber\Curl\Curl
 
-    html2pdf.curl_protocol:
+    html2pdf.protocol:
         class: carlescliment\Html2PdfServiceBundle\Protocol\CurlProtocol
         arguments: ["@html2pdf.curl", "%html2pdf.host%", "%html2pdf.port%"]
 
     html2pdf.bridge:
         class: carlescliment\Html2PdfServiceBundle\Bridge\Html2PdfBridge
-        arguments: ["@html2pdf.curl_protocol"]
+        arguments: ["@html2pdf.protocol"]
