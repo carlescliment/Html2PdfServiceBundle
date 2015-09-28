@@ -14,7 +14,7 @@ interface ProtocolInterface
     /**
      * @return ProtocolInterface itself
      */
-    public function create($html, $resource_name);
+    public function create($html, $resource_name, $options = array());
 
     /**
      * @return File contents

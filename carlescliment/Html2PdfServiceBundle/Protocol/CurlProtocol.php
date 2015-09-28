@@ -37,9 +37,12 @@ class CurlProtocol extends Protocol
     }
 
 
-    public function create($html, $resource_name)
+    public function create($html, $resource_name, $options = array())
     {
-        $this->createRemoteDocumentOrThrowException($html, $resource_name);
+        $response = $this->createRemoteDocument($html, $resource_name, $options);
+        if (!$response->isSuccessful()) {
+            throw new Exceptions\UnableToCreateException($response->getBody());
+        }
         return $this;
     }
 
@@ -61,21 +64,11 @@ class CurlProtocol extends Protocol
         return $this->decorate($this->curl->delete($url));
     }
 
-
-    private function createRemoteDocumentOrThrowException($html, $resource_name)
-    {
-        $response = $this->createRemoteDocument($html, $resource_name);
-        if (!$response->isSuccessful()) {
-            throw new Exceptions\UnableToCreateException($response->getBody());
-        }
-    }
-
-
-    private function createRemoteDocument($html, $resource_name)
+    private function createRemoteDocument($html, $resource_name, $options)
     {
         $this->disableExpectHeader();
         $url = $this->resourceToUrl($resource_name);
-        $parameters = array('content' => $html);
+        $parameters = array_merge(array('content' => $html), $options);
         return $this->decorate($this->curl->put($url, $parameters));
     }
 

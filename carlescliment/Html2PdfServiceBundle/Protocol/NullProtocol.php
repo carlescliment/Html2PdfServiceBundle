@@ -14,7 +14,7 @@ class NullProtocol implements ProtocolInterface
     }
 
 
-    public function create($html, $resource_name)
+    public function create($html, $resource_name, $options = array())
     {
         return $this;
     }

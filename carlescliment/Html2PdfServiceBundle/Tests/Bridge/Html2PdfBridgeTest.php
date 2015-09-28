@@ -44,10 +44,10 @@ class SimpleHtml2PdfBridgeTest extends \PHPUnit_Framework_TestCase
 
         $this->protocol->expects($this->once())
             ->method('create')
-            ->with('<html></html>', 'file_name')
+            ->with('<html></html>', 'file_name', array('footer-left' => 'the footer'))
             ->will($this->returnValue($this->protocol));
 
-        $this->bridge->getFromHtml('<html></html>', 'file_name');
+        $this->bridge->getFromHtml('<html></html>', 'file_name', array('footer-left' => 'the footer'));
     }
 
 

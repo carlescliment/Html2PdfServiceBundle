@@ -100,9 +100,9 @@ class CurlProtocolTest extends MockerTestCase
 
         $this->curl->expects($this->once())
             ->method('put')
-            ->with('http://remote.pdf.com/resource_name', array('content' => '<html></html>'));
+            ->with('http://remote.pdf.com/resource_name', array('content' => '<html></html>', 'footer-left' => 'the footer'));
 
-        $this->protocol->create('<html></html>', 'resource_name');
+        $this->protocol->create('<html></html>', 'resource_name', array('footer-left' => 'the footer'));
     }
 
 
@@ -168,5 +168,4 @@ class CurlProtocolTest extends MockerTestCase
         $response->body = json_encode(array());
         return $response;
     }
-
 }

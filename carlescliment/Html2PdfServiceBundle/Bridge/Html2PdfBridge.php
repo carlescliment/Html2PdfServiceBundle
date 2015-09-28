@@ -18,18 +18,18 @@ class Html2PdfBridge
     }
 
 
-    public function getFromHtml($html, $resource_name)
+    public function getFromHtml($html, $resource_name, $options = array())
     {
-        $contents = $this->getResource($html, $resource_name);
+        $contents = $this->getResource($html, $resource_name, $options);
         return new PdfResponse($resource_name, $contents);
     }
 
 
-    private function getResource($html, $resource_name)
+    private function getResource($html, $resource_name, $options)
     {
         return $this->protocol
                     ->delete($resource_name)
-                    ->create($html, $resource_name)
+                    ->create($html, $resource_name, $options)
                     ->get($resource_name);
     }
 }

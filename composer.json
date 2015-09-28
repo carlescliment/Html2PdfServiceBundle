@@ -1,6 +1,6 @@
 {
     "name": "carlescliment/html2pdf-bundle",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "type": "symfony-bundle",
     "description": "Integrates the html2pdf REST service in Symfony 2",
     "keywords": ["html", "pdf", "conversion"],
