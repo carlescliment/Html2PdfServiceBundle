@@ -55,7 +55,8 @@ class SampleController extends Controller
     {
         $view = $this->renderView('YourBundle:Sample:toPdf.html.twig');
         $bridge = $this->get('html2pdf.bridge');
-        return $bridge->getFromHtml($view, 'document_name');
+        $options = array('footer-left' => 'my footer');
+        return $bridge->getFromHtml($view, 'document_name', $options);
     }
 }
 ```
@@ -75,5 +76,3 @@ html2pdf.protocol:
 
 ## TO-DO
 * Port setting is currently being ignored
-* Allow passing document settings to the service.
-
