@@ -5,4 +5,4 @@ vendor
 **/logs/**
 carlescliment/Html2PdfServiceBundle/Tests/Functional/cache
 carlescliment/Html2PdfServiceBundle/Tests/Functional/logs
-
+*.swp
